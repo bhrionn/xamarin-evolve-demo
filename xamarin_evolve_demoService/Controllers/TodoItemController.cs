@@ -15,7 +15,8 @@ namespace xamarin_evolve_demoService.Controllers
         {
             base.Initialize(controllerContext);
             xamarin_evolve_demoContext context = new xamarin_evolve_demoContext();
-            DomainManager = new EntityDomainManager<TodoItem>(context, Request);
+            // Soft Delete - enables cross-platform deletes to happen (needs clean-up later, but can handle undelete too)
+            DomainManager = new EntityDomainManager<TodoItem>(context, Request, enableSoftDelete: true);
         }
 
         // GET tables/TodoItem
